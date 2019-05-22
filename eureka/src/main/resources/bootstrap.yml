@@ -1,0 +1,39 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka
+
+#  security:
+#    user:
+#      name: admin
+#      password: 1
+#其他服务 http://用户名:密码@ip:端口/eureka/ 类似于数据库配置
+
+#高可用:多注册中心 多起个eureka-server互相注册
+eureka:
+  client:
+    #本身就是注册中心 不需要注册在上面
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+jasypt:
+  encryptor:
+    password: garwer
+#  instance:
+#    #使用ip
+#    prefer-ip-address: true
+#    lease-expiration-duration-in-seconds: 15
+#    lease-renewal-interval-in-seconds: 5
+
+garwer: ENC(HGurJxx28ih7ptv8LVwr1g==)
+
+
+
+
+
+
+
+

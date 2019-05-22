@@ -1,0 +1,7 @@
+include "eureka"
+include "product"
+include "zuul"
+include "oauth2"
+include "user-center"
+include 'common'
+

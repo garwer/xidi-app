@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: user-center
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/actApp?useSSL=true&characterEncoding=utf8
+    username: root
+    password: linjiawei
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    service-url:
+      ##defaultZone: http://admin:1@localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+
+mybatis:
+  #type-aliases-package: cn.bufanli.mybatis.pojo #
+  mapper-locations: classpath:mybatis-mappers/*.xml # 映射文件的路径扫描
+  configuration:
+      mapUnderscoreToCamelCase: true #自动驼峰命名转换

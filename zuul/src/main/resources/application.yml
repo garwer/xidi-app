@@ -1,0 +1,13 @@
+server:
+  port: 9030
+
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:9030/uaa/oauth/token
+      user-authorization-uri: http://localhost:9030/uaa/oauth/authorize
+    resource:
+      user-info-uri:  http://localhost:9030/uaa/user
+      prefer-token-info: false
+
+
