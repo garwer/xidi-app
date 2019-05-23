@@ -22,9 +22,9 @@ public class UserController {
      * @param username
      * @return
      */
-    @GetMapping(value = "/users-anon/findByUsername", params = "username")
+    @GetMapping(value = "/users-anon/internal", params = "username")
     public LoginAppUser findByUsername(String username) {
-        System.out.println("进入这里。。");
-        return null;
+        System.out.println("eeeeeeeeeeeee");
+        return userCenterService.findByUsername(username);
     }
 }

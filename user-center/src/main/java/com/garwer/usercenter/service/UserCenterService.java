@@ -1,6 +1,8 @@
 package com.garwer.usercenter.service;
 
+import com.garwer.usercenter.user.AppUser;
 import com.garwer.usercenter.user.LoginAppUser;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,9 +12,9 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class UserCenterService {
+public class UserCenterService  {
 
-    public LoginAppUser findByUsername(String userName) {
+    public LoginAppUser findByUsername(String username) {
         return null;
     }
 }

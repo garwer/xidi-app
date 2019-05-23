@@ -1,6 +1,7 @@
 package com.garwer.oauth2.feign;
 import com.garwer.usercenter.user.LoginAppUser;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
@@ -13,7 +14,8 @@ import java.util.Map;
  */
 
 @FeignClient("user-center")
+@Component
 public interface UserClient {
-    @GetMapping(value = "/user-anon/findByUsername", params = "username")
-    LoginAppUser findByUsername(@RequestParam("userName") String userName);
+    @GetMapping(value = "/users-anon/internal", params = "username")
+    LoginAppUser findByUsername(@RequestParam("username") String username);
 }

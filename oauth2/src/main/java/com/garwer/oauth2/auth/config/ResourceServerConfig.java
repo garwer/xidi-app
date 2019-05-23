@@ -3,6 +3,7 @@ package com.garwer.oauth2.auth.config;
 import com.cloud.common.constants.PermitAllUrl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -21,25 +22,25 @@ import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 //    @Override
 //    public void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .exceptionHandling()
-//                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-//                .and()
-//                .authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .httpBasic();
+//        http.requestMatcher(new OAuth2RequestedMatcher()).authorizeRequests()
+//                //.antMatchers(PermitAllUrl.permitAllUrl()).permitAll() // 放开权限的url
+//                .antMatchers(PermitAllUrl.permitAllUrl("/users-anon/**", "/wechat/**")).permitAll() // 放开权限的url
+//                .anyRequest().authenticated();
 //    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.requestMatcher(new OAuth2RequestedMatcher()).authorizeRequests()
-                .antMatchers(PermitAllUrl.permitAllUrl()).permitAll() // 放开权限的url
-                .anyRequest().authenticated();
+        http.csrf().disable().exceptionHandling()
+                .authenticationEntryPoint(
+                        (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .and().authorizeRequests()
+                .antMatchers(PermitAllUrl.permitAllUrl("/users-anon/**", "/wechat/**")).permitAll() // 放开权限的url
+                .anyRequest().authenticated().and().httpBasic();
     }
 
     /**
