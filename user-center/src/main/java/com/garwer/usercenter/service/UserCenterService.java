@@ -1,8 +1,11 @@
 package com.garwer.usercenter.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.garwer.usercenter.mapper.UserCenterMapper;
 import com.garwer.usercenter.user.AppUser;
 import com.garwer.usercenter.user.LoginAppUser;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +17,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserCenterService  {
 
+    @Autowired
+    private UserCenterMapper userCenterMapper;
+
     public LoginAppUser findByUsername(String username) {
+        AppUser appUser = userCenterMapper.findByUsername(username);
+        LoginAppUser loginAppUser = new LoginAppUser();
+        if (appUser != null) {
+            BeanUtils.copyProperties(appUser, loginAppUser);
+            System.out.println("===loginAppUser===" + JSONObject.toJSONString(loginAppUser));
+            return loginAppUser;
+        }
         return null;
     }
 }

@@ -12,9 +12,6 @@ public class AppUser implements Serializable {
 	private String headImgUrl;
 	private String phone;
 	private Integer sex;
-	/**
-	 * 状态
-	 */
 	private Boolean enabled;
 	private String type;
 	private Date createTime;

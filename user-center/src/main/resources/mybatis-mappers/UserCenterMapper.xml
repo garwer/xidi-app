@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.garwer.usercenter.mapper">
+<mapper namespace="com.garwer.usercenter.mapper.UserCenterMapper">
+    <resultMap id="AppUser" type="com.garwer.usercenter.user.AppUser">
+        <id column="USER_ID" jdbcType="DECIMAL" property="id" />
+        <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+        <result column="PASSWORD" jdbcType="DECIMAL" property="password" />
+        <result column="NICKNAME" jdbcType="DECIMAL" property="nickname" />
+        <result column="HEADIMGURL" jdbcType="VARCHAR" property="headImgUrl" />
+        <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+        <result column="SEX" jdbcType="DECIMAL" property="sex" />
+        <result column="TYPE" jdbcType="VARCHAR" property="type" />
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createTime" />
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updateTime" />
+    </resultMap>
 
+    <select id="findByUsername" resultMap="AppUser"
+            resultType="com.garwer.usercenter.user.AppUser">
+         select * from app_user t where t.username = #{userName}
+    </select>
 </mapper>

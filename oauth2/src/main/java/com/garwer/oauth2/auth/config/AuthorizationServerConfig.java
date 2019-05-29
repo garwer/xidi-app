@@ -75,8 +75,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         //使用内存中的client
         clients.inMemory()
                 .withClient("demoApp")
-                .secret(bCryptPasswordEncoder.encode("123"))
-                .authorizedGrantTypes("password", "authorization_code");
+                .secret(bCryptPasswordEncoder.encode("123"));
+               // .authorizedGrantTypes("password", "authorization_code");
     //    clients.withClientDetails(redisClientDetailsService);
      //   redisClientDetailsService.loadAllClientToCache();
     }
