@@ -1,8 +1,9 @@
 package com.garwer.usercenter.controller;
-
 import com.garwer.usercenter.service.UserCenterService;
 import com.garwer.usercenter.user.LoginAppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
     @Autowired
+    private ConsumerTokenServices tokenServices;
+
+    @Autowired
     private UserCenterService userCenterService;
 
     /**
@@ -24,7 +28,12 @@ public class UserController {
      */
     @GetMapping(value = "/users-anon/internal", params = "username")
     public LoginAppUser findByUsername(String username) {
-        System.out.println("eeeeeeeeeeeee");
         return userCenterService.findByUsername(username);
     }
+
+    @DeleteMapping(value = "remove_token", params = "access_token")
+    public void removeToken(String access_token) {
+        boolean flag = tokenServices.revokeToken(access_token);
+    }
+
 }

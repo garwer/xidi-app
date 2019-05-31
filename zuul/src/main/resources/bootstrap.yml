@@ -1,10 +1,23 @@
 spring:
-    application:
-        name: gateway
+  mvc:
+    servlet:
+      load-on-startup: 1
 
+spring:
+  application:
+    name: gateway-zuul
 
 eureka:
   client:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+zuul:
+  ignored-services: *
+  routes:
+    oauth2:
+      path: /api-o/**
+      serviceId: oauth-center
+    api-u:
+        path: /api-u/**
+        serviceId: user-center

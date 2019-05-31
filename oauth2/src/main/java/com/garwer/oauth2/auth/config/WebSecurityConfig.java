@@ -58,10 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    /**
+     * 加密测试
+     * @param args
+     */
     public static void main(String[] args) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        //加密"0"
-        String encode = bCryptPasswordEncoder.encode("123");
+        String encode = bCryptPasswordEncoder.encode("linjw");
         System.out.println(encode);
     }
 

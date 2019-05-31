@@ -30,4 +30,6 @@ public class OAuth2Controller {
         System.out.println("principal name ====" + principal.getName());
         return authentication;
     }
+
+
 }

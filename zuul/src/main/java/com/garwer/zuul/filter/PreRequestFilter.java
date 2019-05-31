@@ -1,25 +1,28 @@
 package com.garwer.zuul.filter;
-
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.util.PatternMatchUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+/**
+ * user-anno/internal接口内部不能拦截 但也不允许外部直接访问
+ */
 @Component
 public class PreRequestFilter extends ZuulFilter {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PreRequestFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(PreRequestFilter.class);
 
 
     @Override
     public String filterType() {
-        return "pre";
+        return FilterConstants.PRE_TYPE;
     }
 
     @Override
@@ -29,15 +32,26 @@ public class PreRequestFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        RequestContext requestContext = RequestContext.getCurrentContext();
+        HttpServletRequest request = requestContext.getRequest();
+        return PatternMatchUtils.simpleMatch("*-anon/internal*", request.getRequestURI());
     }
 
+//    @Override
+//    public Object run() {
+//        RequestContext ctx = RequestContext.getCurrentContext();
+//        HttpServletRequest request = ctx.getRequest();
+//
+//        log.info("send {} request to {}",request.getMethod(),request.getRequestURL().toString());
+//        return null;
+//    }
     @Override
     public Object run() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LOG.info("send {} request to {}",request.getMethod(),request.getRequestURL().toString());
+        RequestContext requestContext = RequestContext.getCurrentContext();
+        requestContext.setResponseStatusCode(HttpStatus.FORBIDDEN.value());
+        requestContext.setResponseBody(HttpStatus.FORBIDDEN.getReasonPhrase());
+        requestContext.setSendZuulResponse(false);
+
         return null;
     }
 }
