@@ -7,9 +7,6 @@ spring:
     username: root
     password: linjiawei
     driver-class-name: com.mysql.cj.jdbc.Driver
-  security:
-    filter:
-      order: 3
 
 eureka:
   client:
@@ -19,9 +16,6 @@ eureka:
 
 mybatis:
   #type-aliases-package: cn.bufanli.mybatis.pojo #
+  mapper-locations: classpath:mybatis-mappers/*.xml # 映射文件的路径扫描
   configuration:
-  #自动驼峰命名转换
-      mapUnderscoreToCamelCase: true
-  mapper-locations: classpath:mybatis-mappers/*.xml
-  # 映射文件的路径扫描
-
+      mapUnderscoreToCamelCase: true #自动驼峰命名转换
