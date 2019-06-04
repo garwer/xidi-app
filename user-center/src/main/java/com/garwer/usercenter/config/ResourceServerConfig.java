@@ -1,5 +1,4 @@
 package com.garwer.usercenter.config;
-
 import com.cloud.common.constants.PermitAllUrl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

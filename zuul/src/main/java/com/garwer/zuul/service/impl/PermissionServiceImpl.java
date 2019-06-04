@@ -1,6 +1,5 @@
 package com.garwer.zuul.service.impl;
-
-import com.microservice.skeleton.gateway.service.PermissionService;
+import com.garwer.zuul.service.PermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
