@@ -1,6 +1,5 @@
 dependencies {
-    compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-    compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '2.1.0'
+    compile custom.eureka
     compile project(":common")
 }
 

@@ -1,3 +1,5 @@
+apply from: 'dependency.gradle'
+
 buildscript {
     ext {
         springBootVersion = '2.0.7.RELEASE'
@@ -47,20 +49,15 @@ allprojects {
 
     //统一依赖定义
     dependencies {
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.47'
+        compile libraries.json
+        compile libraries.swagger2
+        compile libraries.mysql
+        compile libraries.lombok
+        compile group: 'com.alibaba', name: 'easyexcel', version: '1.1.2-beat1'
         compile 'org.springframework.boot:spring-boot-starter-data-redis'
         compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
         compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
         compile 'org.springframework.boot:spring-boot-starter-test'
         compile 'org.springframework.boot:spring-boot-starter-web'
-        // compile('org.springframework.cloud:spring-cloud-starter-security')
-        compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-        compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-        compile ('mysql:mysql-connector-java:6.0.6')
-        compile group: 'com.alibaba', name: 'easyexcel', version: '1.1.2-beat1'
-        compile('org.projectlombok:lombok:1.18.2')
-        //compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.3.2'
-        //compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.0.7.RELEASE'
-        //compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.10'
     }
 }
