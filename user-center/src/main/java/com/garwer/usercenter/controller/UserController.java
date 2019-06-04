@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
-    @Autowired
-    private ConsumerTokenServices tokenServices;
+//    @Autowired
+//    private ConsumerTokenServices tokenServices;
 
     @Autowired
     private UserCenterService userCenterService;
@@ -33,7 +33,6 @@ public class UserController {
 
     @DeleteMapping(value = "remove_token", params = "access_token")
     public void removeToken(String access_token) {
-        boolean flag = tokenServices.revokeToken(access_token);
     }
 
 }
