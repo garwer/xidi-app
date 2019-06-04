@@ -5,3 +5,4 @@ include "oauth2"
 include "user-center"
 include 'common'
 include 'nacos'
+include 'log-center'
