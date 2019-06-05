@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.garwer.logcenter.mapper.LogCenterMapper">
+    <insert id="saveLog">
+
+    </insert>
+
+    <update id="initTable">
+        CREATE TABLE IF NOT EXISTS `log_dto` (
+          `id` int(11) NOT NULL AUTO_INCREMENT,
+          `username` varchar(50) DEFAULT NULL,
+          `module` varchar(100) DEFAULT NULL,
+          `status` varchar(10) DEFAULT NULL,
+          `createDate` datetime DEFAULT NULL,
+          `msg` varchar(1000) DEFAULT NULL,
+          PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    </update>
+</mapper>

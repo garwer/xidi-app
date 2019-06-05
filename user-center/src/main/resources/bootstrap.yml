@@ -22,6 +22,8 @@ mybatis:
   configuration:
   #自动驼峰命名转换
       mapUnderscoreToCamelCase: true
+     #打印mybatis执行sql
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mybatis-mappers/*.xml
   # 映射文件的路径扫描
 

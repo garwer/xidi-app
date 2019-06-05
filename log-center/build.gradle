@@ -1,4 +1,5 @@
-jar.enabled=true
-dependencies{
+jar.enabled = true
+dependencies {
     compile custom.log_center
+    compile project(":common")
 }

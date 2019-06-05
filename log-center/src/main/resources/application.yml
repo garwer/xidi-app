@@ -1,9 +1,23 @@
 spring:
   application:
-    name: nacos
-nacos:
-  discovery:
-    server-addr: localhost:8848
-  config:
-    server-addr: localhost:8848
+    name: log-center
+  datasource:
+    url: jdbc:mysql://localhost:3306/actApp?useSSL=true&characterEncoding=utf8
+    username: root
+    password: linjiawei
+    driver-class-name: com.mysql.cj.jdbc.Driver
+es:
+  clusterName: elasticsearch_linjiawei
+  #es tcp地址 默认9300
+  clusterNodes: localhost:9300
 
+log-center:
+  type: database
+
+mybatis:
+  configuration:
+  #自动驼峰命名转换
+      mapUnderscoreToCamelCase: true
+      #打印mybatis执行sql
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mybatis-mappers/*.xml
