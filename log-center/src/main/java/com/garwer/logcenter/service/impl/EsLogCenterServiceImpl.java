@@ -102,9 +102,10 @@ public class EsLogCenterServiceImpl implements ApplicationContextAware, LogCente
     }
 
     @Override
-    public GetResponse findById(String id) {
+    public Object findById(String id) {
         GetResponse result = client.prepareGet(LOG_INDEX, LOG_TYPE, id).get();
-        return result;
+        log.info("es查询结果=>{}", result);
+        return result.getSource();
     }
 
 

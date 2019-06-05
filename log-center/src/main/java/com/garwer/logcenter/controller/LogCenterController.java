@@ -6,9 +6,12 @@ import com.garwer.logcenter.service.LogCenterService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.get.GetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * @Author: Garwer
@@ -26,9 +29,7 @@ public class LogCenterController {
 
     @GetMapping("/findById")
     public Object findById(@RequestParam String id) {
-        GetResponse result =  service.findById(id);
-        log.info("查找结果:{}", result);
-        return new ResponseEntity<>(result.getSource(), HttpStatus.OK);
+        return new ResponseEntity<>((HashMap) service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/saveLog")

@@ -1,7 +1,6 @@
 package com.garwer.logcenter.service;
-
 import com.cloud.common.log.LogDto;
-import org.elasticsearch.action.get.GetResponse;
+import org.springframework.stereotype.Repository;
 
 
 /**
@@ -9,8 +8,10 @@ import org.elasticsearch.action.get.GetResponse;
  * @Date: 2019/6/5 9:29 PM
  * @Version 1.0
  * 暂只提供增/查
+ * Repository防止idea找不到实现bean报红
  */
 
+@Repository
 public interface LogCenterService {
     String LOG_CENTER_ES = "es";
     String LOG_CENTER_DATABASE = "database";

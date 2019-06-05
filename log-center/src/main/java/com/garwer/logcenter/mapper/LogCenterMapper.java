@@ -3,6 +3,8 @@ package com.garwer.logcenter.mapper;
 import com.cloud.common.log.LogDto;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+
 /**
  * @Author: Garwer
  * @Date: 2019/6/5 11:26 PM
@@ -14,4 +16,6 @@ public interface LogCenterMapper {
     void saveLog(LogDto logDto);
 
     void initTable();
+
+    HashMap<String,Object> findById(String id);
 }

@@ -3,8 +3,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.garwer.logcenter.mapper.LogCenterMapper">
-    <insert id="saveLog">
+    <resultMap id="LogDto" type="com.cloud.common.log.LogDto">
+        <id column="ID" jdbcType="DECIMAL" property="id" />
+        <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+        <result column="MODULE" jdbcType="DECIMAL" property="module" />
+        <result column="STATUS" jdbcType="DECIMAL" property="status" />
+        <result column="CREATE_DATE" jdbcType="VARCHAR" property="createDate" />
+        <result column="MSG" jdbcType="VARCHAR" property="msg" />
+    </resultMap>
 
+    <insert id="saveLog">
+      INSERT INTO `log_dto`(username, module, status,createDate, msg) VALUES (#{username}, #{module}, #{status}, #{createDate}, #{msg});
     </insert>
 
     <update id="initTable">
@@ -18,4 +27,8 @@
           PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8
     </update>
+
+    <select id="findById" resultType="java.util.HashMap">
+        select * from log_dto t where t.id = #{id}
+    </select>
 </mapper>

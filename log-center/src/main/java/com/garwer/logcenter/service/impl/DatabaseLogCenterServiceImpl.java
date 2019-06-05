@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -30,12 +32,14 @@ public class DatabaseLogCenterServiceImpl implements LogCenterService {
 
     @Override
     public void saveLog(LogDto logDto) {
+        logDto.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        logDto.setStatus("OK");
         logCenterMapper.saveLog(logDto);
     }
 
     @Override
-    public HashMap<String, String> findById(String id) {
-        return null;
+    public HashMap<String, Object> findById(String id) {
+        return logCenterMapper.findById(id);
     }
 
     /**
