@@ -1,9 +1,14 @@
 spring:
   application:
-    name: nacos
-nacos:
-  discovery:
-    server-addr: localhost:8848
-  config:
-    server-addr: localhost:8848
+    name: log-center
 
+
+es:
+#  clusterName: elasticsearch
+#  clusterNodes: 127.0.0.1:9300
+
+  clusterName: itss-cluster
+  clusterNodes: 192.168.7.130:9300
+
+log-center:
+  type: es

@@ -9,8 +9,8 @@ ext.versions = [
     eureka_client: '2.0.2.RELEASE',
     mybatis_starter: '1.3.2',
     oauth2: '2.3.3.RELEASE', //低版本oauth2操作redis报错 java.lang.NoSuchMethodError: org.springframework.data.redis.connection.RedisConnection.set([B[B)V
-    es: '6.8.0', //es版本 最好与es环境一致
-    log4j: '2.10.0'
+    es: '5.6.0', //es版本 最好与es环境一致
+    log4j: '2.7.0'
 ]
 
 //公共组件
@@ -52,8 +52,8 @@ ext.custom = [
     ],
     log_center: [
             "org.elasticsearch:elasticsearch:${versions.es}",
-            "org.elasticsearch.client:transport:${versions.es}",
-            "org.apache.logging.log4j:log4j-core:${versions.log4j}"
+            "org.elasticsearch.client:transport:${versions.es}"
+         //   "org.apache.logging.log4j:log4j-core:${versions.log4j}"
     ],
     //业务模块
     product: [
