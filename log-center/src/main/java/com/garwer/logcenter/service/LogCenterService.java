@@ -1,4 +1,5 @@
 package com.garwer.logcenter.service;
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.log.LogDto;
 import org.springframework.stereotype.Repository;
 
@@ -27,5 +28,7 @@ public interface LogCenterService {
      * @return
      */
     <T> T findById(String id);
+
+    <T> T findLogs(JSONObject params);
 
 }

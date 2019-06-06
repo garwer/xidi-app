@@ -1,6 +1,7 @@
 package com.garwer.logcenter.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.log.LogDto;
 import com.garwer.logcenter.service.LogCenterService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,16 +26,21 @@ import java.util.HashMap;
 public class LogCenterController {
 
     @Autowired
-    private LogCenterService service; //忽略idea报红
+    private LogCenterService logCenterService; //忽略idea报红
 
     @GetMapping("/findById")
     public Object findById(@RequestParam String id) {
-        return new ResponseEntity<>((HashMap) service.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>((HashMap) logCenterService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/saveLog")
     public void saveLog(@RequestBody LogDto logDto) {
         log.info("传递log=>:{}", JSON.toJSONString(logDto));
-        service.saveLog(logDto);
+        logCenterService.saveLog(logDto);
+    }
+
+    @PostMapping("/findLogs")
+    public Object findLog(@RequestBody JSONObject param) {
+        return logCenterService.findLogs(param);
     }
 }

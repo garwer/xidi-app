@@ -1,9 +1,11 @@
 package com.garwer.logcenter.mapper;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.log.LogDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @Author: Garwer
@@ -18,4 +20,8 @@ public interface LogCenterMapper {
     void initTable();
 
     HashMap<String,Object> findById(String id);
+
+    Integer getLogDtoCount(JSONObject params);
+
+    List<LogDto> findLogs(JSONObject params);
 }

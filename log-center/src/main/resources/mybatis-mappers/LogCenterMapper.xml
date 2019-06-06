@@ -12,6 +12,25 @@
         <result column="MSG" jdbcType="VARCHAR" property="msg" />
     </resultMap>
 
+    <sql id="logDtoCondition">
+        <where>
+            <if test = "username != null and username != ''">
+                <bind name="_username" value = "'%' + username + '%'"/>
+                and t.username like #{_username}
+            </if>
+            <if test = "module != null and module != ''">
+                <bind name = "_module" value = "'%' + module + '%'"/>
+                and t.module like #{_module}
+            </if>
+            <if test = "status != null and status != ''">
+                and t.status = #{status}
+            </if>
+            <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+                and t.createDate BETWEEN #{beginTime} and #{endTime}
+            </if>
+        </where>
+    </sql>
+
     <insert id="saveLog">
       INSERT INTO `log_dto`(username, module, status,createDate, msg) VALUES (#{username}, #{module}, #{status}, #{createDate}, #{msg});
     </insert>
@@ -31,4 +50,16 @@
     <select id="findById" resultType="java.util.HashMap">
         select * from log_dto t where t.id = #{id}
     </select>
+
+    <select id="getLogDtoCount" resultType="java.lang.Integer">
+      select count(1) from log_dto t
+        <include refid="logDtoCondition" />
+    </select>
+
+    <select id="findLogs" resultType="com.cloud.common.log.LogDto">
+        select * from log_dto t
+        <include refid="logDtoCondition" />
+        limit #{start}, #{size}
+    </select>
+
 </mapper>
