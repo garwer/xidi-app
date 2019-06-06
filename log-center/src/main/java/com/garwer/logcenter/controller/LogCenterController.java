@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class LogCenterController {
 
     @Autowired
-    private LogCenterService service;
+    private LogCenterService service; //忽略idea报红
 
     @GetMapping("/findById")
     public Object findById(@RequestParam String id) {

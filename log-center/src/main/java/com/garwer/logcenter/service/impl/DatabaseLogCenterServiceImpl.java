@@ -8,7 +8,10 @@ import com.garwer.logcenter.service.LogCenterService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.get.GetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -24,9 +27,10 @@ import java.util.HashMap;
  */
 
 @Service
-@Conditional(DatabaseLogCondition.class)
+@ConditionalOnExpression("'database'.equals('${log-center.type}')")
 @Slf4j
 public class DatabaseLogCenterServiceImpl implements LogCenterService {
+
     @Autowired
     private LogCenterMapper logCenterMapper;
 
