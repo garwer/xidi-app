@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserCenterMapper {
     AppUser findByUsername(String userName);
+
+    Integer initTable();
 }

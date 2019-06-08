@@ -15,9 +15,7 @@ ext.versions = [
     nacos: '0.2.1',
     eureka_server: '2.0.2.RELEASE', //无2.0.7和springboot版本不同步
     eureka_client: '2.0.2.RELEASE',
-    openfeign: '2.0.2.RELEASE',
-
-
+    openfeign: '2.0.2.RELEASE'
 ]
 
 //公共组件
@@ -50,7 +48,8 @@ ext.custom = [
     user_center: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
-            "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.mybatis_starter}"
+            "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.mybatis_starter}",
+            "org.springframework.cloud:spring-cloud-starter-zipkin" //自兼容
     ],
     zuul: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
@@ -70,7 +69,8 @@ ext.custom = [
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
             "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}",
             "org.springframework.boot:spring-boot-starter-jdbc:${versions.spring_jdbc}",
-            "org.apache.commons:commons-pool2:${versions.commons_pool2}"
+            "org.apache.commons:commons-pool2:${versions.commons_pool2}",
+            "org.springframework.cloud:spring-cloud-starter-zipkin" //自兼容
     ],
     //业务模块
     product: [

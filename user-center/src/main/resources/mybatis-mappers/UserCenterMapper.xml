@@ -3,20 +3,37 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.garwer.usercenter.mapper.UserCenterMapper">
     <resultMap id="AppUser" type="com.garwer.usercenter.user.AppUser">
-        <id column="USER_ID" jdbcType="DECIMAL" property="id" />
+        <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
         <result column="USERNAME" jdbcType="VARCHAR" property="username" />
         <result column="PASSWORD" jdbcType="DECIMAL" property="password" />
-        <result column="NICKNAME" jdbcType="DECIMAL" property="nickname" />
-        <result column="HEADIMGURL" jdbcType="VARCHAR" property="headImgUrl" />
-        <result column="PHONE" jdbcType="VARCHAR" property="phone" />
         <result column="SEX" jdbcType="DECIMAL" property="sex" />
-        <result column="TYPE" jdbcType="VARCHAR" property="type" />
+        <result column="NICKNAME" jdbcType="DECIMAL" property="nickName" />
+        <result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+        <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+        <result column="ENABLED" jdbcType="VARCHAR" property="enabled" />
         <result column="CREATETIME" jdbcType="VARCHAR" property="createTime" />
         <result column="UPDATETIME" jdbcType="VARCHAR" property="updateTime" />
     </resultMap>
 
+    <update id="initTable">
+        CREATE TABLE if not EXISTS `app_user` (
+          `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+          `user_name` varchar(50) NOT NULL COMMENT '用户名',
+          `password` varchar(60) NOT NULL COMMENT '密码',
+          `sex` tinyint(1) DEFAULT NULL COMMENT '性别',
+          `nick_name` varchar(255) DEFAULT NULL COMMENT '昵称',
+          `img_url` varchar(1024) DEFAULT NULL COMMENT '头像url',
+          `phone` varchar(11) DEFAULT NULL COMMENT '手机号',
+          `enabled` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（1有效,0无效）',
+          `create_time` datetime NOT NULL COMMENT '创建时间',
+          `update_time` datetime NOT NULL COMMENT '修改时间',
+          PRIMARY KEY (`user_id`),
+          UNIQUE KEY `user_name` (`user_name`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表'
+    </update>
+
     <select id="findByUsername" resultMap="AppUser"
             resultType="com.garwer.usercenter.user.AppUser">
-         select * from app_user t where t.username = #{userName}
+         select * from app_user t where t.user_name = #{userName}
     </select>
 </mapper>
