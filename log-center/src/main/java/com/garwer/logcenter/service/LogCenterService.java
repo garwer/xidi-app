@@ -1,6 +1,6 @@
 package com.garwer.logcenter.service;
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.log.LogDto;
+import com.garwer.common.log.LogDto;
 import org.springframework.stereotype.Repository;
 
 

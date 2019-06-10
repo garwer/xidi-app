@@ -1,21 +1,14 @@
 package com.garwer.logcenter.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.entity.Page;
-import com.cloud.common.log.LogDto;
-import com.cloud.common.utils.PageUtils;
-import com.garwer.logcenter.config.condition.DatabaseLogCondition;
-import com.garwer.logcenter.config.condition.EsLogCondition;
+import com.garwer.common.entity.Page;
+import com.garwer.common.log.LogDto;
+import com.garwer.common.utils.PageUtils;
 import com.garwer.logcenter.mapper.LogCenterMapper;
 import com.garwer.logcenter.service.LogCenterService;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

@@ -4,7 +4,8 @@ spring:
       name: oauth2
   profiles:
     active: dev
-
+  aop:
+    auto: true
 eureka:
   client:
     register-with-eureka: true

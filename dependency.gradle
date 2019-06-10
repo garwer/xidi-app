@@ -37,6 +37,10 @@ ext.libraries = [
 
 //各模块所需jar
 ext.custom = [
+    common: [
+            "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}"
+    ],
+
     eureka: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:${versions.eureka_server}",
             "com.github.ulisesbocchio:jasypt-spring-boot-starter:${versions.jasypt}"

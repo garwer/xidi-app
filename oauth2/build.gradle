@@ -3,6 +3,7 @@ dependencies {
     compile custom.oauth2
     compile project(":common")
     compile project(":user-center")
+    compile project (":log-starter")
 }
 
 

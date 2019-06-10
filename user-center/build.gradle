@@ -2,4 +2,5 @@ jar.enabled=true
 dependencies {
     compile custom.user_center
     compile project(":common")
+    compile project(":log-starter")
 }

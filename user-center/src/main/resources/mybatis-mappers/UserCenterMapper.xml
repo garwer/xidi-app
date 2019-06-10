@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.garwer.usercenter.mapper.UserCenterMapper">
-    <resultMap id="AppUser" type="com.garwer.usercenter.user.AppUser">
+    <resultMap id="AppUser" type="com.garwer.common.user.AppUser">
         <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
         <result column="USERNAME" jdbcType="VARCHAR" property="username" />
         <result column="PASSWORD" jdbcType="DECIMAL" property="password" />
@@ -32,8 +32,40 @@
         ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表'
     </update>
 
+    <update id="update">
+        update app_user
+        <set>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nick_name = #{nickname},
+            </if>
+            <if test="imgUrl != null and imgUrl != ''">
+                img_url = #{headImgUrl},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
     <select id="findByUsername" resultMap="AppUser"
-            resultType="com.garwer.usercenter.user.AppUser">
+            resultType="com.garwer.common.user.AppUser">
          select * from app_user t where t.user_name = #{userName}
+    </select>
+
+    <select id="findByUserId" resultType="com.garwer.common.user.AppUser">
+          select * from app_user t where t.user_id = #{userName}
     </select>
 </mapper>

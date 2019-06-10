@@ -1,7 +1,7 @@
 package com.garwer.logcenter.mapper;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.log.LogDto;
+import com.garwer.common.log.LogDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

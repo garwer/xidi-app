@@ -1,7 +1,6 @@
 jar.enabled=true
 dependencies {
     compile custom.eureka
-    compile project(":common")
 }
 
 

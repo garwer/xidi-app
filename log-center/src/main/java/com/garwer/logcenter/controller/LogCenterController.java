@@ -2,12 +2,10 @@ package com.garwer.logcenter.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.log.LogDto;
+import com.garwer.common.log.LogDto;
 import com.garwer.logcenter.service.LogCenterService;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.get.GetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

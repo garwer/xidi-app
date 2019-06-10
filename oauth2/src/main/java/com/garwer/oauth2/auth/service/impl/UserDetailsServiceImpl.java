@@ -1,8 +1,7 @@
 package com.garwer.oauth2.auth.service.impl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.garwer.oauth2.feign.UserClient;
-import com.garwer.usercenter.user.LoginAppUser;
-import com.garwer.usercenter.user.loginType.CredentialType;
+import com.garwer.common.user.LoginAppUser;
+import com.garwer.common.user.loginType.CredentialType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.DisabledException;

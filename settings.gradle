@@ -6,3 +6,4 @@ include "user-center"
 include 'common'
 include 'nacos'
 include 'log-center'
+include 'log-starter'

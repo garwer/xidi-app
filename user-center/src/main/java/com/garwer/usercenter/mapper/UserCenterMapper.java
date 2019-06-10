@@ -1,5 +1,5 @@
 package com.garwer.usercenter.mapper;
-import com.garwer.usercenter.user.AppUser;
+import com.garwer.common.user.AppUser;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,5 +13,9 @@ import org.springframework.stereotype.Repository;
 public interface UserCenterMapper {
     AppUser findByUsername(String userName);
 
+    AppUser findByUserId(Long userId);
+
     Integer initTable();
+
+    void update(AppUser appUser);
 }

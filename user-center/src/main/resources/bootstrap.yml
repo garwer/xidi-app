@@ -6,7 +6,6 @@ spring:
     name: user-center
   profiles:
     active: dev
-
 eureka:
   client:
     service-url:

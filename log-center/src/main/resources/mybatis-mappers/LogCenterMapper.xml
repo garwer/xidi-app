@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.garwer.logcenter.mapper.LogCenterMapper">
-    <resultMap id="LogDto" type="com.cloud.common.log.LogDto">
+    <resultMap id="LogDto" type="com.garwer.common.log.LogDto">
         <id column="ID" jdbcType="DECIMAL" property="id" />
         <result column="USERNAME" jdbcType="VARCHAR" property="username" />
         <result column="MODULE" jdbcType="DECIMAL" property="module" />
@@ -56,7 +56,7 @@
         <include refid="logDtoCondition" />
     </select>
 
-    <select id="findLogs" resultType="com.cloud.common.log.LogDto">
+    <select id="findLogs" resultType="com.garwer.common.log.LogDto">
         select * from log_dto t
         <include refid="logDtoCondition" />
         limit #{start}, #{size}

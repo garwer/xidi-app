@@ -2,8 +2,8 @@ spring:
   mvc:
     servlet:
       load-on-startup: 1
-
-spring:
+  profiles:
+    active: dev
   application:
     name: gateway-zuul
 
@@ -12,12 +12,16 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
 zuul:
-  ignored-services: *
+  #ignored-services: *
   routes:
     oauth2:
       path: /api-o/**
-      serviceId: oauth-center
+      serviceId: oauth2
     api-u:
-        path: /api-u/**
-        serviceId: user-center
+      path: /api-u/**
+      serviceId: user-center
+  host:
+    connect-timeout-millis: 10000 #zuul调用等待时间 默认2000
+    socket-timeout-millis: 6000
