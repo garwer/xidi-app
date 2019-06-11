@@ -25,11 +25,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 为了支持多类型登录，这里username后面拼装上登录类型,如username|type
         //简单做判断
-        System.out.println("进入这里啊1。。。");
         String[] params = username.split("\\|");
         username = params[0];// 真正的用户名
-        System.out.println("username1=======" + username);
-        System.out.println("进入这里啊2。。。");
         LoginAppUser loginAppUser = userClient.findByUsername(username);
         System.out.println("username=======" + username);
         if (loginAppUser == null) {

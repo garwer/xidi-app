@@ -1,6 +1,7 @@
 package com.garwer.oauth2.auth.config;
 import com.garwer.oauth2.auth.config.authentication.AuthorizationServerRedisConfig;
 import com.garwer.oauth2.auth.error.MssWebResponseExceptionTranslator;
+import com.garwer.oauth2.auth.service.impl.outh.JdbcClientDetailsServiceBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +17,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -38,7 +38,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JdbcClientDetailsService jdbcClientDetailsService;
+    private JdbcClientDetailsServiceBean jdbcClientDetailsService;
 
     @Autowired
     @Qualifier("dataSource") //防止idea找不到报红
@@ -65,9 +65,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         JdbcTokenStore jdbc = new JdbcTokenStore(dataSource);
         return jdbc;
     }
-    @Primary
 
     @Bean
+    @Primary
     public DefaultTokenServices defaultTokenServices(){
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(jdbcStore());
@@ -82,12 +82,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
         //使用内存中的client
-        clients.inMemory()
-                .withClient("demoApp")
-                .secret(bCryptPasswordEncoder.encode("123"));
+//        clients.inMemory()
+//                .withClient("demoApp")
+//                .secret(bCryptPasswordEncoder.encode("123"));
                // .authorizedGrantTypes("password", "authorization_code");
-    //    clients.withClientDetails(redisClientDetailsService);
-     //   redisClientDetailsService.loadAllClientToCache();
+        clients.withClientDetails(jdbcClientDetailsService);
     }
 
     @Bean

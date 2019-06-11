@@ -1,9 +1,11 @@
 package com.garwer.oauth2.auth.service.impl.outh;
 
 import com.alibaba.fastjson.JSONObject;
+import com.garwer.oauth2.auth.config.authentication.AuthorizationServerRedisConfig;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -20,6 +22,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
+@ConditionalOnProperty(name = "access_token_type", havingValue = AuthorizationServerRedisConfig.TOKEN_TYPE) //当为redis时生效
 public class RedisClientDetailsService extends JdbcClientDetailsService {
 
     @Autowired

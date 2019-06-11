@@ -4,11 +4,8 @@ import com.garwer.oauth2.auth.error.MssWebResponseExceptionTranslator;
 import com.garwer.oauth2.auth.service.impl.outh.RedisClientDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
@@ -33,7 +30,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Order(1)
 public class AuthorizationServerRedisConfig extends AuthorizationServerConfigurerAdapter {
-    protected static final String TOKEN_TYPE = "redis";
+    public static final String TOKEN_TYPE = "redis";
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -61,6 +58,7 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
 
     @Bean
     public TokenStore redisStore() {
+        System.out.println("redisssssssssssss1");
         RedisTokenStore redis = new RedisTokenStore(connectionFactory);
         return redis;
     }
@@ -68,6 +66,7 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
     @Primary
     @Bean
     public DefaultTokenServices defaultTokenServices(){
+        System.out.println("redisssssssssssss");
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(redisStore());
         tokenServices.setSupportRefreshToken(true);
@@ -81,9 +80,11 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
         //使用内存中的client
-        clients.inMemory()
-                .withClient("demoApp")
-                .secret(bCryptPasswordEncoder.encode("123"));
+//        clients.inMemory()
+//                .withClient("demoApp")
+//                .secret(bCryptPasswordEncoder.encode("123"));
+        clients.withClientDetails(redisClientDetailsService);
+        //redisClientDetailsService.loadAllClientToCache();
     }
 
     @Bean
