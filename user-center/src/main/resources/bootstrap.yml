@@ -20,3 +20,10 @@ mybatis:
      #打印mybatis执行sql
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mybatis-mappers/*.xml
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8080/api-o/user-me
+      prefer-token-info: false
+      id: user-center

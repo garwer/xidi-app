@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  */
 
 @Service
-@ConditionalOnMissingBean(value = {RedisClientDetailsService.class}) //当没有自定义类型时注入
+@ConditionalOnMissingBean(value = {RedisClientDetailsService.class}) //当没有自定义类型时注入 暂时自定义类型仅RedisClientDetailsService
 public class JdbcClientDetailsServiceBean extends JdbcClientDetailsService{
 
     public JdbcClientDetailsServiceBean(DataSource dataSource) {

@@ -1,12 +1,15 @@
 package com.garwer.zuul.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.garwer.common.user.loginType.CredentialType;
 import com.garwer.zuul.feign.ZuulOauth2Client;
 import com.garwer.zuul.util.SystemClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.util.OAuth2Utils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -27,7 +30,10 @@ public class ZuulTokenController {
     private ZuulOauth2Client zuulOauth2Client;
 
     @PostMapping("/sys/login")
-    public Map<String, Object> login(String username, String password) {
+    public Map<String, Object> login(@RequestBody JSONObject param) {
+        log.info("param=>{}", param);
+        String username = param.getString("username");
+        String password = param.getString("password");
         Map<String, String> parameters = new HashMap<>();
         parameters.put(OAuth2Utils.GRANT_TYPE, "password");
         parameters.put(OAuth2Utils.CLIENT_ID, SystemClientUtil.CLIENT_ID);

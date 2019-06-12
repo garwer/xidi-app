@@ -1,6 +1,7 @@
 package com.garwer.oauth2.auth.config.authentication;
 
 import com.garwer.oauth2.auth.error.MssWebResponseExceptionTranslator;
+import com.garwer.oauth2.auth.service.impl.outh.RedisAuthorizationCodeServices;
 import com.garwer.oauth2.auth.service.impl.outh.RedisClientDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
     private RedisClientDetailsService redisClientDetailsService;
 
     @Autowired
+    private RedisAuthorizationCodeServices redisAuthorizationCodeServices;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Value("${access_token_type}")
@@ -51,22 +55,19 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
     public void configure(
             AuthorizationServerEndpointsConfigurer endpoints) {
         log.info("当前存储token方式为{}", accessTokenType);
-        endpoints
-                .authenticationManager(authenticationManager)
-                .tokenStore(redisStore());
+        endpoints.authenticationManager(authenticationManager).tokenStore(redisStore()).authorizationCodeServices(redisAuthorizationCodeServices);
     }
 
     @Bean
-    public TokenStore redisStore() {
-        System.out.println("redisssssssssssss1");
+    public RedisTokenStore redisStore() {
         RedisTokenStore redis = new RedisTokenStore(connectionFactory);
+        //redis.setAuthenticationKeyGenerator(new RandomAuthenticationKeyGenerator());
         return redis;
     }
 
     @Primary
     @Bean
     public DefaultTokenServices defaultTokenServices(){
-        System.out.println("redisssssssssssss");
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(redisStore());
         tokenServices.setSupportRefreshToken(true);
@@ -80,11 +81,14 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
         //使用内存中的client
+        		clients.inMemory().withClient("system").secret(bCryptPasswordEncoder.encode("system"))
+				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("app")
+				.accessTokenValiditySeconds(3600);
 //        clients.inMemory()
 //                .withClient("demoApp")
 //                .secret(bCryptPasswordEncoder.encode("123"));
-        clients.withClientDetails(redisClientDetailsService);
-        //redisClientDetailsService.loadAllClientToCache();
+      //  clients.withClientDetails(redisClientDetailsService);
+       // redisClientDetailsService.loadAllClientToCache();
     }
 
     @Bean

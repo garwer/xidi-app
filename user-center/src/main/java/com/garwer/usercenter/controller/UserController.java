@@ -23,6 +23,11 @@ public class UserController {
     @Autowired
     private UserCenterService userCenterService;
 
+    @GetMapping("/users/current")
+    public LoginAppUser getLoginAppUser() {
+        return AppUserUtil.getLoginUser();
+    }
+
     /**
      * FeignClient中必须需要参数
      * @param username

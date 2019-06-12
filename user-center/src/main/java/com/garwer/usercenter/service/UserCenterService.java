@@ -46,6 +46,7 @@ public class UserCenterService  {
     }
 
     public LoginAppUser findByUsername(String username) {
+        System.out.println("username=====" + username);
         AppUser appUser = userCenterMapper.findByUsername(username);
         LoginAppUser loginAppUser = new LoginAppUser();
         if (appUser != null) {

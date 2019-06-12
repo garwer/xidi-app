@@ -7,6 +7,12 @@ spring:
   application:
     name: gateway-zuul
 
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+    sender:
+      type: web
+
 eureka:
   client:
     register-with-eureka: true
@@ -14,7 +20,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 zuul:
-  #ignored-services: *
+  ignored-services: '*'
+  sensitiveHeaders:
   routes:
     oauth2:
       path: /api-o/**
@@ -22,6 +29,22 @@ zuul:
     api-u:
       path: /api-u/**
       serviceId: user-center
+    product:
+      path: /api-p/**
+      serviceId: product
   host:
     connect-timeout-millis: 10000 #zuul调用等待时间 默认2000
     socket-timeout-millis: 6000
+  add-proxy-headers: true
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+  eager-load:
+    enabled: true
+
+
+
+
+
+

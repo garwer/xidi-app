@@ -20,15 +20,12 @@ public class AppUserUtil {
     public static LoginAppUser getLoginUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof OAuth2Authentication) {
-            System.out.println("===111===");
             OAuth2Authentication oAuth2Auth = (OAuth2Authentication) authentication;
             authentication = oAuth2Auth.getUserAuthentication();
             if (authentication instanceof UsernamePasswordAuthenticationToken) {
-                System.out.println("2");
                 UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) authentication;
                 Object principal = authentication.getPrincipal();
                 if (principal instanceof LoginAppUser) {
-                    System.out.println("3");
                     return (LoginAppUser) principal;
                 }
                 HashMap map = (HashMap) authenticationToken.getDetails();

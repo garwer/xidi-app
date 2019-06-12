@@ -97,13 +97,13 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
 
     /**
      * 将oauth_client_details全表刷入redis
+     * 否则校验时候token校验失败
      */
     public void loadAllClientToCache() {
-        if (stringRedisTemplate.hasKey(CACHE_CLIENT_KEY) == Boolean.TRUE) {
-            return;
-        }
+//        if (stringRedisTemplate.hasKey(CACHE_CLIENT_KEY) == Boolean.TRUE) {
+//            return;
+//        }
         System.out.println("将oauth_client_details全表刷入redis");
-
         List<ClientDetails> list = super.listClientDetails();
         if (CollectionUtils.isEmpty(list)) {
             System.out.println("oauth_client_details表数据为空，请检查");

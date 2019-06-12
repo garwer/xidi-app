@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LogoutController {
+
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
 

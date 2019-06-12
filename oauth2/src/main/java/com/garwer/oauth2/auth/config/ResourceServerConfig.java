@@ -1,6 +1,7 @@
 package com.garwer.oauth2.auth.config;
 
 import com.garwer.common.constants.PermitAllUrl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-
+@Slf4j
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 //    @Override
 //    public void configure(HttpSecurity http) throws Exception {
@@ -31,14 +32,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 //                .anyRequest().authenticated();
 //    }
 
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable().exceptionHandling()
+//                .authenticationEntryPoint(
+//                        (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+//                .and().authorizeRequests()
+//                .antMatchers(PermitAllUrl.permitAllUrl("/users-anon/**", "/wechat/**")).permitAll() // 放开权限的url
+//                .anyRequest().authenticated().and().httpBasic();
+//    }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().exceptionHandling()
-                .authenticationEntryPoint(
-                        (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and().authorizeRequests()
-                .antMatchers(PermitAllUrl.permitAllUrl("/users-anon/**", "/wechat/**")).permitAll() // 放开权限的url
-                .anyRequest().authenticated().and().httpBasic();
+        http.requestMatcher(new OAuth2RequestedMatcher()).authorizeRequests()
+                .antMatchers(PermitAllUrl.permitAllUrl()).permitAll() // 放开权限的url
+                .anyRequest().authenticated();
     }
 
     /**

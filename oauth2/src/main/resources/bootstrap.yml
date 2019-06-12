@@ -6,9 +6,11 @@ spring:
     active: dev
   aop:
     auto: true
+
 eureka:
   client:
     register-with-eureka: true
     service-url:
       #defaultZone: http://admin:1@localhost:8761/eureka/
       defaultZone: http://localhost:8761/eureka/
+

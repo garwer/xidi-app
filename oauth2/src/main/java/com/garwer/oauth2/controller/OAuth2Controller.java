@@ -33,6 +33,7 @@ public class OAuth2Controller {
      */
     @GetMapping("/user-me")
     public Authentication principal(Principal principal) {
+        System.out.println("aaaaaaaaaaaaaaaa");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("principal name ====" + principal.getName());
         return authentication;
