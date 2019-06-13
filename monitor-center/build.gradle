@@ -1,0 +1,5 @@
+jar.enabled=true
+dependencies {
+    compile custom.monitor_center
+    compile project(":common")
+}

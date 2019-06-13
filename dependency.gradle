@@ -47,8 +47,8 @@ ext.custom = [
             "com.github.ulisesbocchio:jasypt-spring-boot-starter:${versions.jasypt}"
     ],
     nacos: [
-            "com.alibaba.boot:nacos-config-spring-boot-starter:${versions.nacos}",
-            "com.alibaba.boot:nacos-discovery-spring-boot-starter:${versions.nacos}"
+            "com.alibaba.boot:monitor-config-spring-boot-starter:${versions.nacos}",
+            "com.alibaba.boot:monitor-discovery-spring-boot-starter:${versions.nacos}"
     ],
     user_center: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
@@ -86,6 +86,11 @@ ext.custom = [
     product: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
+    ],
+    //监控中心模块
+    monitor_center: [
+        "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
+        "de.codecentric:spring-boot-admin-starter-server:2.0.2"
     ]
 
 ]

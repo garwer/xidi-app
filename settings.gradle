@@ -4,6 +4,8 @@ include "zuul"
 include "oauth2"
 include "user-center"
 include 'common'
-include 'nacos'
+include 'monitor'
 include 'log-center'
 include 'log-starter'
+include 'monitor-center'
+
