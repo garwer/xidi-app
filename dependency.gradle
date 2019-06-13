@@ -61,7 +61,9 @@ ext.custom = [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
             "org.springframework.cloud:spring-cloud-starter-netflix-zuul", //自兼容
-            "org.springframework.cloud:spring-cloud-starter-zipkin" //自兼容
+            "org.springframework.cloud:spring-cloud-starter-zipkin", //自兼容
+            "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${versions.oauth2_autoconfigure}",
+
 
     ],
     log_center: [

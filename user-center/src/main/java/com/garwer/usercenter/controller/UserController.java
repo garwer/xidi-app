@@ -43,7 +43,7 @@ public class UserController {
 
     }
 
-    @LogAnnotation(module = "修改个人信息")
+   // @LogAnnotation(module = "修改个人信息")
     @PutMapping("/users/me")
     public AppUser updateMe(@RequestBody AppUser appUser) {
         System.out.println("appUser=" + appUser);

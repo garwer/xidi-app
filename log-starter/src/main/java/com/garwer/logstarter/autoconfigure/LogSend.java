@@ -22,21 +22,19 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogSend {
-    public LogSend() {
-        logger.info("=====初始化aop=====");
-    }
-
     /**
      * 作为starter 此处不采用lombok
      */
     private static final Logger logger = LoggerFactory.getLogger(LogSend.class);
+    public LogSend() {
+        logger.info("=====初始化aop=====");
+    }
 
     @Around(value = "@annotation(com.garwer.common.log.annotation.LogAnnotation)")
     public Object logSend(ProceedingJoinPoint joinPoint) {
-        logger.info("aaaaaaaaaaaaaaaa");
         LogDto logDto = new LogDto();
         LoginAppUser loginAppUser = AppUserUtil.getLoginUser();
-        System.out.println("获取用户名为" + loginAppUser.getUsername());
+        logger.info("获取用户名为{}", loginAppUser.getUsername());
         logger.info("获取用户名为========{}", loginAppUser.getUsername() );
         if (loginAppUser != null) {
             logDto.setUsername(loginAppUser.getUsername());
