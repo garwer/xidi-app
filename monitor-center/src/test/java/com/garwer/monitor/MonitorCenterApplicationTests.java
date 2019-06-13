@@ -1,4 +1,4 @@
-package com.garwer.eureka;
+package com.garwer.monitor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class NacosApplicationTests {
+public class MonitorCenterApplicationTests {
     @Value("${garwer}")
 
     private String garwer;
