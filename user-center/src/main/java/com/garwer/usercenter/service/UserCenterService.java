@@ -65,7 +65,7 @@ public class UserCenterService  {
      */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void updateAppUser(AppUser appUser) {
-        appUser.setUpdateTime(new Date());
+        appUser.setUpdatetime(new Date());
         userCenterMapper.update(appUser);
         log.info("修改用户密码为：{}", appUser.getPassword());
         log.info("修改用户：{}", appUser);

@@ -3,16 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.garwer.usercenter.mapper.UserCenterMapper">
     <resultMap id="AppUser" type="com.garwer.common.user.AppUser">
-        <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
+        <id column="USER_ID" jdbcType="DECIMAL" property="userid" />
         <result column="USERNAME" jdbcType="VARCHAR" property="username" />
         <result column="PASSWORD" jdbcType="DECIMAL" property="password" />
         <result column="SEX" jdbcType="DECIMAL" property="sex" />
-        <result column="NICKNAME" jdbcType="DECIMAL" property="nickName" />
-        <result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+        <result column="NICKNAME" jdbcType="DECIMAL" property="nickname" />
+        <result column="IMG_URL" jdbcType="VARCHAR" property="imgurl" />
         <result column="PHONE" jdbcType="VARCHAR" property="phone" />
         <result column="ENABLED" jdbcType="VARCHAR" property="enabled" />
-        <result column="CREATETIME" jdbcType="VARCHAR" property="createTime" />
-        <result column="UPDATETIME" jdbcType="VARCHAR" property="updateTime" />
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime" />
     </resultMap>
 
     <update id="initTable">
@@ -41,8 +41,8 @@
             <if test="nickname != null and nickname != ''">
                 nick_name = #{nickname},
             </if>
-            <if test="imgUrl != null and imgUrl != ''">
-                img_url = #{headImgUrl},
+            <if test="imgurl != null and imgurl != ''">
+                img_url = #{imgurl},
             </if>
             <if test="phone != null and phone != ''">
                 phone = #{phone},
@@ -53,19 +53,19 @@
             <if test="enabled != null">
                 enabled = #{enabled},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
+            <if test="updatetime != null">
+                update_time = #{updatetime},
             </if>
         </set>
-        where user_id = #{userId}
+        where user_id = #{userid}
     </update>
 
     <select id="findByUsername" resultMap="AppUser"
             resultType="com.garwer.common.user.AppUser">
-         select * from app_user t where t.user_name = #{userName}
+         select * from app_user t where t.user_name = #{username}
     </select>
 
     <select id="findByUserId" resultType="com.garwer.common.user.AppUser">
-          select * from app_user t where t.user_id = #{userName}
+          select * from app_user t where t.user_id = #{username}
     </select>
 </mapper>

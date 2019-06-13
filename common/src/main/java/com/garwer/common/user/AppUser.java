@@ -11,14 +11,14 @@ import java.util.Date;
 @NoArgsConstructor //生成无参
 @AllArgsConstructor //有参
 public class AppUser implements Serializable {
-	private Long userId;
+	private Long userid;
 	private String username;
 	private String password;
 	private Integer sex;
-	private String nickName;
-	private String imgUrl;
+	private String nickname;
+	private String imgurl;
 	private String phone;
 	private Boolean enabled;
-	private Date createTime;
-	private Date updateTime;
+	private Date createtime;
+	private Date updatetime;
 }
