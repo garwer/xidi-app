@@ -1,6 +1,11 @@
 spring:
   application:
     name: monitor-server
+  security:
+    user:
+      name: linjiawei
+      password: woshiLJW123
+      roles: admin
 
 eureka:
   client:
@@ -9,4 +14,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   port: 9080
+
 
