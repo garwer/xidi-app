@@ -1,12 +1,15 @@
 spring:
   application:
-    name: monitor-server
+    name: monitor-center
   security:
     user:
-      name: linjiawei
-      password: woshiLJW123
-      roles: admin
-
+      name: linjw
+      password: 123456
+      roles: ADMIN
+  boot:
+    admin:
+      ui:
+        title: Garwer监控中心
 eureka:
   client:
     register-with-eureka: true
@@ -14,5 +17,21 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   port: 9080
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    env:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+#security:
+#  basic:
+#    enabled: true
 
 

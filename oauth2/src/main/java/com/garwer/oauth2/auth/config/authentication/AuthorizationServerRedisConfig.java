@@ -81,14 +81,11 @@ public class AuthorizationServerRedisConfig extends AuthorizationServerConfigure
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
         //使用内存中的client
-        		clients.inMemory().withClient("system").secret(bCryptPasswordEncoder.encode("system"))
-				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("app")
-				.accessTokenValiditySeconds(3600);
-//        clients.inMemory()
-//                .withClient("demoApp")
-//                .secret(bCryptPasswordEncoder.encode("123"));
-      //  clients.withClientDetails(redisClientDetailsService);
-       // redisClientDetailsService.loadAllClientToCache();
+//        		clients.inMemory().withClient("system").secret(bCryptPasswordEncoder.encode("system"))
+//				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("app")
+//				.accessTokenValiditySeconds(3600);
+        clients.withClientDetails(redisClientDetailsService);
+        redisClientDetailsService.loadAllClientToCache();
     }
 
     @Bean
