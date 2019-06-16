@@ -54,10 +54,10 @@ ext.custom = [
     user_center: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
+            "org.springframework.boot:spring-boot-starter-data-redis",
             "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${versions.oauth2_autoconfigure}",
             "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.mybatis_starter}",
             "org.springframework.cloud:spring-cloud-starter-zipkin", //自兼容
-            "org.springframework.boot:spring-boot-starter-actuator:${versions.actuator}"  //自兼容
     ],
     //网关模块
     zuul: [
@@ -65,9 +65,7 @@ ext.custom = [
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
             "org.springframework.cloud:spring-cloud-starter-netflix-zuul", //自兼容
             "org.springframework.cloud:spring-cloud-starter-zipkin", //自兼容
-            "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${versions.oauth2_autoconfigure}",
-
-
+            "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${versions.oauth2_autoconfigure}"
     ],
     //日志中心模块
     log_center: [
@@ -76,13 +74,13 @@ ext.custom = [
             "org.elasticsearch:elasticsearch:${versions.es}",
             "org.elasticsearch.client:transport:${versions.es}",
             "org.elasticsearch.plugin:transport-netty4-client:${versions.es}",
-            "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.mybatis_starter}"
-            //"org.apache.logging.log4j:log4j-core:${versions.log4j}"
+            "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.mybatis_starter}",
     ],
     //鉴权模块
     oauth2: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
+            "org.springframework.boot:spring-boot-starter-data-redis",
             "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}",
             "org.springframework.boot:spring-boot-starter-jdbc:${versions.spring_jdbc}",
             "org.apache.commons:commons-pool2:${versions.commons_pool2}",
@@ -92,7 +90,7 @@ ext.custom = [
     product: [
             "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${versions.eureka_client}",
             "org.springframework.security.oauth:spring-security-oauth2:${versions.oauth2}",
-            "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${versions.oauth2_autoconfigure}"
+            "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${versions.oauth2_autoconfigure}",
     ],
     //监控中心模块【客户端】
     monitor_center: [

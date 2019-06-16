@@ -10,28 +10,25 @@ spring:
     admin:
       ui:
         title: Garwer监控中心
+        brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>Garwer的应用监控管理</span>"
+
 eureka:
   client:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
 server:
   port: 9080
 
 management:
   endpoint:
-    health:
+    health: #开启健康状态查看
       show-details: always
-    env:
-      enabled: false
   endpoints:
     web:
       exposure:
         include: "*"
 
-
-#security:
-#  basic:
-#    enabled: true
 
 

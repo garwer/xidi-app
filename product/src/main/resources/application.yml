@@ -1,8 +1,17 @@
 spring:
   application:
     name: product
-
-
+  boot:
+    admin:
+      client:
+        url:  http://localhost:9080/eureka/
+        username: linjw
+        password: 123456
+        instance:
+          metadata:
+            # 配置发送到SBA Server的SBA Client的端点安全密码
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
 server:
   port: 9002
 
@@ -26,3 +35,14 @@ ribbon:
 
   ReadTimeout: 60000
   ConnectTimeout: 60000
+
+management:
+  endpoint:
+    health: #开启健康状态查看
+      show-details: always
+    env:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"

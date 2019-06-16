@@ -6,6 +6,18 @@ spring:
     name: user-center
   profiles:
     active: dev
+  boot:
+    admin:
+      client:
+        url:  http://localhost:9080/eureka/
+        username: linjw
+        password: 123456
+        instance:
+          metadata:
+            # 配置发送到SBA Server的SBA Client的端点安全密码
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
+
 eureka:
   client:
     service-url:
@@ -21,4 +33,15 @@ mybatis:
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mybatis-mappers/*.xml
 
+#开启健康状态查看 需先引入actuator相关jar并且【否则admin监控模块报红 oauth2模块没引因user-center引入】 加入以下配置 否则springboot admin无法菜单栏无法显示详细
+management:
+  endpoint:
+    health:
+      show-details: always
+    env:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 

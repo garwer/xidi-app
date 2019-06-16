@@ -54,10 +54,13 @@ allprojects {
         compile libraries.mysql
         compile libraries.lombok
         compile group: 'com.alibaba', name: 'easyexcel', version: '1.1.2-beat1'
-        compile 'org.springframework.boot:spring-boot-starter-data-redis'
         compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
         compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
         compile 'org.springframework.boot:spring-boot-starter-test'
         compile 'org.springframework.boot:spring-boot-starter-web'
+        //spring-boot-admin-starter-client
+        //compile "org.springframework.boot:spring-boot-starter-actuator:${versions.actuator}"  //自兼容 如需要监控模块
+        compile "de.codecentric:spring-boot-admin-starter-client:2.0.2" //client包含actuator
+
     }
 }
