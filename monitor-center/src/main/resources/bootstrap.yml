@@ -4,7 +4,7 @@ spring:
   security:
     user:
       name: linjw
-      password: 123456
+      password: 1
       roles: ADMIN
   boot:
     admin:
@@ -12,11 +12,18 @@ spring:
         title: Garwer监控中心
         brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>Garwer的应用监控管理</span>"
 
+#需要用户密码 否者admin socket连接会出现问题
 eureka:
   client:
-    register-with-eureka: true
+    registryFetchIntervalSeconds: 5
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
 
 server:
   port: 9080
@@ -24,7 +31,7 @@ server:
 management:
   endpoint:
     health: #开启健康状态查看
-      show-details: always
+      show-details: ALWAYS
   endpoints:
     web:
       exposure:

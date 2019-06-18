@@ -30,3 +30,14 @@ spring:
 
 #存储token方式 redis/database 如果是database模式需预先创建好存放token的两张表 oauth_client_details、oauth_code
 access_token_type: redis
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+    env:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'

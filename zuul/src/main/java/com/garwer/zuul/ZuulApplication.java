@@ -13,9 +13,9 @@ import org.springframework.context.annotation.Bean;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableZuulProxy
-@EnableAutoConfiguration(exclude = {
-        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
-})
+//@EnableAutoConfiguration(exclude = {
+//        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
+//})
 public class ZuulApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZuulApplication.class, args);

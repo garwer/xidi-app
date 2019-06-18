@@ -59,8 +59,8 @@ allprojects {
         compile 'org.springframework.boot:spring-boot-starter-test'
         compile 'org.springframework.boot:spring-boot-starter-web'
         //spring-boot-admin-starter-client
-        //compile "org.springframework.boot:spring-boot-starter-actuator:${versions.actuator}"  //自兼容 如需要监控模块
-        compile "de.codecentric:spring-boot-admin-starter-client:2.0.2" //client包含actuator
+        compile "org.springframework.boot:spring-boot-starter-actuator:${versions.actuator}"  //自兼容 如需要监控模块
+        //compile "de.codecentric:spring-boot-admin-starter-client:2.0.2" //client包含actuator
 
     }
 }
